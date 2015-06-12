@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>DexMethods TreeMap</title>
+
+    <style type='text/css'>
+        body {
+            font-family: sans-serif;
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+<script type="text/javascript" src="https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1.1','packages':['treemap', 'gauge']}]}"></script>
+<script type="text/javascript" src="tree-map-data.js"></script>
+
+<div id="treemap" style="width: 100%; height: 500px;"></div>
+<div id="gauges" style="width: 400px; margin: 0 auto;"></div>
+
+<p><small><em>Right click to navigate back</em></small></p>
+
+<script type='text/javascript'>//<![CDATA[
+            google.setOnLoadCallback(drawReports);
+            function drawReports() {
+                drawGauge();
+                drawTreeMap();
+            }
+
+            function drawGauge()
+            {
+
+                var data = google.visualization.arrayToDataTable(gaugeData);
+
+                var options = {
+                  width: 400, height: 200,
+                  max: Math.max(65536, totalMethods),
+                  yellowFrom:50000, yellowTo: 65536,
+                  redFrom: 65536, redTo: Math.max(65536, totalMethods),
+                  minorTicks: 10000
+                };
+
+                var chart = new google.visualization.Gauge(document.getElementById('gauges'));
+
+                chart.draw(data, options);
+
+            }
+
+            function drawTreeMap() {
+                var data = google.visualization.arrayToDataTable(treeMapData);
+                tree = new google.visualization.TreeMap(document.getElementById('treemap'));
+                tree.draw(data, {
+                    minColor: '#4C94E0',
+                    midColor: '#4C94E0',
+                    maxColor: '#4C94E0',
+                    headerHeight: 15,
+                    fontColor: 'black',
+                    showScale: false,
+                    generateTooltip: showFullTooltip
+                });
+
+                function showFullTooltip(row, size, value) {
+                    return '<div style="background:#fd9; padding:10px; border-style:solid">' +
+                        '<span style="font-family:Courier">Package: <strong>' + data.getValue(row, 0) + '</strong>, ' +
+                        'Methods: ' + data.getValue(row, 2) + ' (' + Math.round((data.getValue(row, 2) / totalMethods) * 100) + '%)' +
+                        '</div>';
+                }
+            }
+    //]]>
+    </script>
+
+</body>
+</html>
+
