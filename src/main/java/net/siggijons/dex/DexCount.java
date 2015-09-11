@@ -159,9 +159,9 @@ public class DexCount {
             return;
         }
 
-        // Open and add all files matching "classes.*\.dex" in the zip file.
+        // Open and add all files matching "*.dex" in the zip file.
         for (ZipEntry entry : Collections.list(zipFile.entries())) {
-            if (entry.getName().matches("classes.*\\.dex")) {
+            if (entry.getName().matches(".*\\.dex")) {
                 dexFiles.put(entry.getName(), openDexFile(zipFile, entry));
             }
         }
