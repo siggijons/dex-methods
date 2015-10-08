@@ -10,7 +10,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.net.siggijons.dex:dex-methods:0.1"
+    classpath "gradle.plugin.net.siggijons.dex:dex-methods:0.3.1"
   }
 }
 
