@@ -22,3 +22,6 @@ apply plugin: "net.siggijons.dexmethodcount"
 ./gradlew :app:countDebugDexMethods
 open quizup/build/reports/dex-count
 ```
+
+## Dig into method count
+![screenshot](screenshot.jpg)
