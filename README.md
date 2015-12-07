@@ -20,7 +20,7 @@ apply plugin: "net.siggijons.dexmethodcount"
 ## Generate report
 ```
 ./gradlew :app:countDebugDexMethods
-open quizup/build/reports/dex-count
+open app/build/reports/dex-count
 ```
 
 ## Dig into method count
