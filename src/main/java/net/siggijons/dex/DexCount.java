@@ -3,7 +3,7 @@ package net.siggijons.dex;
 import com.android.dexdeps.DexData;
 import com.android.dexdeps.MethodRef;
 import com.android.dexdeps.Output;
-import com.beust.jcommander.internal.Lists;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.apache.commons.lang.ArrayUtils;
 
